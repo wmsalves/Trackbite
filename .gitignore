@@ -366,3 +366,5 @@ FodyWeavers.xsd
 appsettings.*.json
 !appsettings.json
 /Trackbite/appsettings.Development.json
+/Trackbite/appsettings.json
+/Trackbite/appsettings.Development.json
