@@ -365,3 +365,4 @@ FodyWeavers.xsd
 # Security
 appsettings.*.json
 !appsettings.json
+/Trackbite/appsettings.Development.json
