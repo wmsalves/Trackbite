@@ -23,5 +23,13 @@ namespace Trackbite.Controllers
         {
             return await _context.Habits.ToListAsync();
         }
+        // POST: api/Habits
+        [HttpPost]
+        public async Task<ActionResult<Habit>> CreateHabit(Habit habit)
+        {
+            _context.Habits.Add(habit);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetHabits", new { id = habit.Id }, habit);
+        }
     }
 }
