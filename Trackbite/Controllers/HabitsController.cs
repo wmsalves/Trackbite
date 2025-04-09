@@ -23,6 +23,21 @@ namespace Trackbite.Controllers
         {
             return await _context.Habits.ToListAsync();
         }
+
+        // GET: api/habits/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Habit>> GetHabit(int id)
+        {
+            var habit = await _context.Habits.FindAsync(id);
+
+            if (habit == null)
+            {
+                return NotFound();
+            }
+
+            return habit;
+        }
+
         // POST: api/Habits
         [HttpPost]
         public async Task<ActionResult<Habit>> CreateHabit(Habit habit)
