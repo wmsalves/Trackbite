@@ -46,5 +46,35 @@ namespace Trackbite.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetHabits", new { id = habit.Id }, habit);
         }
+
+        // PUT: api/habits/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutHabit(int id, Habit habit)
+        {
+            if (id != habit.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(habit).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Habits.Any(e => e.Id == id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
     }
 }
