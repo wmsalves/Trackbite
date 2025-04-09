@@ -76,5 +76,21 @@ namespace Trackbite.Controllers
 
             return NoContent();
         }
+
+        // DELETE: api/habits/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHabit(int id)
+        {
+            var habit = await _context.Habits.FindAsync(id);
+            if (habit == null)
+            {
+                return NotFound();
+            }
+
+            _context.Habits.Remove(habit);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
