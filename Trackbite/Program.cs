@@ -22,7 +22,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
+app.UseCors("AllowAll");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
