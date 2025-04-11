@@ -1,10 +1,26 @@
-<!-- src/app/components/dashboard/dashboard.component.html -->
 <div class="dashboard">
-    <h2>Meus Hábitos</h2>
+  <h1>Trackbite Dashboard</h1>
+
+  <!-- Section de hábitos -->
+  <section class="habits">
+    <h2>Habits</h2>
     <ul>
       <li *ngFor="let habit of habits">
-        <strong>{{ habit.title }}</strong>: {{ habit.description }}
+        <span>{{ habit.name }}</span>
+        <span [class.completed]="habit.completed">
+          {{ habit.completed ? '✅ Done' : '⏳ In progress' }}
+        </span>
       </li>
     </ul>
-  </div>
-  
+  </section>
+
+  <!-- Section de alimentação -->
+  <section class="nutrition">
+    <h2>Nutrition</h2>
+    <ul>
+      <li *ngFor="let item of foods">
+        <strong>{{ item.name }}</strong> - {{ item.calories }} kcal
+      </li>
+    </ul>
+  </section>
+</div>

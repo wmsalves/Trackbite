@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { HabitService, Habit } from '../../services/habit.service';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; // 👈 importa o módulo com *ngFor, *ngIf etc
 
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
-  habits: Habit[] = [];
+export class DashboardComponent {
+  habits = [
+    { name: 'Drink Water', completed: true },
+    { name: 'Exercise', completed: false },
+    { name: 'Read a Book', completed: true },
+  ];
 
-  constructor(private habitService: HabitService) {}
-
-  ngOnInit(): void {
-    this.habitService.getHabits().subscribe({
-      next: (data) => this.habits = data,
-      error: (err) => console.error('Erro ao buscar hábitos:', err)
-    });
-  }
+  foods = [
+    { name: 'Banana', calories: 89 },
+    { name: 'Chicken Breast', calories: 165 },
+    { name: 'Rice', calories: 130 },
+  ];
 }
