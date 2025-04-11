@@ -1,0 +1,10 @@
+<!-- src/app/components/dashboard/dashboard.component.html -->
+<div class="dashboard">
+    <h2>Meus Hábitos</h2>
+    <ul>
+      <li *ngFor="let habit of habits">
+        <strong>{{ habit.title }}</strong>: {{ habit.description }}
+      </li>
+    </ul>
+  </div>
+  
