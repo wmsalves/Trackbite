@@ -1,23 +1,16 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-
-export interface Habit {
-  id: number;
-  title: string;
-  description: string;
-}
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class HabitService {
-  private apiUrl = 'https://localhost:5001/api/habits'
+  private baseUrl = `${environment.apiUrl}/habits`;
 
   constructor(private http: HttpClient) {}
 
-  getHabits(): Observable<Habit[]> {
-    return this.http.get<Habit[]>(this.apiUrl);
+  getHabits() {
+    return this.http.get(this.baseUrl);
   }
 }
