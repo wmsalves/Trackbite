@@ -47,6 +47,24 @@ namespace Trackbite.Controllers
             return habitHistory;
         }
 
+        // GET: api/habithistories
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<HabitHistory>>> GetAllHabitHistories()
+        {
+            return await _context.HabitHistories
+                .Include(h => h.Habit)
+                .ToListAsync();
+        }
+
+        // GET: api/habithistories/byhabit/1
+        [HttpGet("byhabit/{habitId}")]
+        public async Task<ActionResult<IEnumerable<HabitHistory>>> GetByHabit(int habitId)
+        {
+            return await _context.HabitHistories
+                .Where(h => h.HabitId == habitId)
+                .ToListAsync();
+        }
+
         // PUT: api/habithistories/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateHabitHistory(int id, HabitHistory habitHistory)
