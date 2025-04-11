@@ -46,5 +46,50 @@ namespace Trackbite.Controllers
 
             return habitHistory;
         }
+
+        // PUT: api/habithistories/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateHabitHistory(int id, HabitHistory habitHistory)
+        {
+            if (id != habitHistory.Id)
+            {
+                return BadRequest("ID do parâmetro não bate com o ID do corpo.");
+            }
+
+            var exists = await _context.HabitHistories.AnyAsync(h => h.Id == id);
+            if (!exists)
+            {
+                return NotFound("Histórico não encontrado.");
+            }
+
+            _context.Entry(habitHistory).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return StatusCode(500, "Erro ao atualizar o banco de dados.");
+            }
+
+            return NoContent();
+        }
+
+        // DELETE: api/habithistories/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHabitHistory(int id)
+        {
+            var habitHistory = await _context.HabitHistories.FindAsync(id);
+            if (habitHistory == null)
+            {
+                return NotFound();
+            }
+
+            _context.HabitHistories.Remove(habitHistory);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
