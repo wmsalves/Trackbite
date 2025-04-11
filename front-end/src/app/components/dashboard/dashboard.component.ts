@@ -7,7 +7,7 @@ import { HabitService } from '../../services/habit.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
 })
 export class DashboardComponent implements OnInit {
   habits: any[] = [];
