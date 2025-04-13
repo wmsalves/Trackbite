@@ -63,7 +63,7 @@ Trackbite/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/seu-usuario/trackbite.git
+https://github.com/wmsalves/Trackbite.git
 cd trackbite
 ```
 
